@@ -10,7 +10,7 @@ print()
 
 # update this information to the existing database
 
-loc_name = [] # starting an empty list to store the names of the airport where the player travels
+loc_name = [] # an empty list to store the names of the airport where the player travels
 loc_cord = [] # an empty list to store the coordinates of all the airport where the player travels
 
 from new_destination import currentLocation
@@ -29,7 +29,7 @@ print()
 
 co2_bgd = 1000 # for test purpose only
 print("Your allocated CO2 budget is " + str(co2_bgd) + ".")
-print("Please do the routine engine checkup, fasten your seatbealt and start flying!!")
+print("Please do the routine engine checkup, fasten your seatbelt and start flying!!")
 
 c = 1 # This variable is used to for indexing through the airport
 while co2_bgd >= 0:
@@ -45,7 +45,7 @@ while co2_bgd >= 0:
     dt = round(dt,2) # distance travelled
 
     from co2_calculator import factor
-    co2_emit = round(dt * factor, 2)  # co2 used for travelling to the new distination
+    co2_emit = round(dt * factor, 2)  # co2 used for travelling to the new destination
     co2_bgd -= co2_emit
 
     if co2_bgd >0:
