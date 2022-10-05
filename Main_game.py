@@ -4,6 +4,9 @@
 ###############
 
 print()
+print("-----------------------------------The game begins, Good luck !!----------------------------------------------")
+print()
+
 user_name = input("Please enter the player's name: ")
 start_location = input(str('Please enter your starting location (in ICAO format): ')).upper()
 print()
@@ -31,7 +34,7 @@ co2_bgd = 1000 # for test purpose only
 print("Your allocated CO2 budget is " + str(co2_bgd) + ".")
 print("Please do the routine engine checkup, fasten your seatbelt and start flying!!")
 
-c = 1 # This variable is used to for indexing through the airport where the user reaches
+c = 1 # This variable is used for indexing through the airport where the user reaches
 while co2_bgd >= 0:
     print()
     next_location = input(str("Please enter your next destination (in ICAO format): ")).upper()
@@ -48,22 +51,26 @@ while co2_bgd >= 0:
     co2_emit = round(dt * factor, 2)  # co2 used for travelling to the new destination
     co2_bgd -= co2_emit
 
+    from Weather_API import getWeatherDataByLatLon
+    weather_values = getWeatherDataByLatLon(loc_cord[c][0], loc_cord[c][1])
+
+
     if co2_bgd >0:
         print()
         print("Your new location is in " + loc_name[c] + ".")
-        print("Distance travelled is " + str(dt) + "km.")
-        print("Remaining co2 budget is "+ str(round(co2_bgd,2)) +".")
-        print("your local weather will be retrived from API')
+        print("Distance travelled   = " + str(dt) + "km")
+        print("Remaining co2 budget = "+ str(round(co2_bgd,2)))
+        print("Local temperature    = ", weather_values[0], " degree centigrade")
+        print("Wind speed           = ", weather_values[1], "m/s")
+        print("Weather code         = ", weather_values[2], "This is used to detect the coludy or clear sky, still wokring on it!")
+        print("---------------------------------------------------------------------------------")
 
     c += 1
 
 else:
     print()
+
     print('You ran out of your CO2 budget before reaching the distination!!')
-print()
-
-
-
-
-
+    print()
+    print("-----------------------------------Game Over !!----------------------------------------------")
 
