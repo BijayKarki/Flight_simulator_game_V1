@@ -31,7 +31,7 @@ co2_bgd = 1000 # for test purpose only
 print("Your allocated CO2 budget is " + str(co2_bgd) + ".")
 print("Please do the routine engine checkup, fasten your seatbelt and start flying!!")
 
-c = 1 # This variable is used to for indexing through the airport
+c = 1 # This variable is used to for indexing through the airport where the user reaches
 while co2_bgd >= 0:
     print()
     next_location = input(str("Please enter your next destination (in ICAO format): ")).upper()
@@ -53,6 +53,7 @@ while co2_bgd >= 0:
         print("Your new location is in " + loc_name[c] + ".")
         print("Distance travelled is " + str(dt) + "km.")
         print("Remaining co2 budget is "+ str(round(co2_bgd,2)) +".")
+        print("your local weather will be retrived from API')
 
     c += 1
 
