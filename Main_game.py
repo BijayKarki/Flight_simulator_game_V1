@@ -1,10 +1,10 @@
 ###############
-## Step 1
+## Stage 1
 ###############
 
-print()
-print("-----------------------------------The game begins, Good luck !!----------------------------------------------")
-print()
+from introductory_text import gameDescription
+
+gameDescription()
 
 user_name = input("Please enter the player's name: ")
 start_location = input(str('Please enter your starting location (in ICAO format): ')).upper()
@@ -25,8 +25,7 @@ airports.append({
     "coord": tuple(result[1:3])
 
 })
-
-print("A brief text on how to play the game will be displayed here to the player!!")  # Write actual information here
+print("++++++++++++++++++++++++++++++++++ The game begins, Good luck !! ++++++++++++++++++++++++++++++++++++++++++++++")
 print()
 
 ###############
@@ -41,12 +40,13 @@ battery_life = playQuiz()
 should_game_continue = battery_life is not None
 
 if should_game_continue:
-    print("Congratulations! You have earned " + str(battery_life) + " battery life for the flight.")
+    print("Congratulations! You have earned " + str(battery_life) + " kAmph battery life for the flight.")
     print()
     print("Please do the routine engine checkup, fasten your seatbelt and start flying!!")
-    "----------------------------------- Have a safe flight !!----------------------------------------------"
+    print()
+    print("----------------------------------- Have a safe flight !!----------------------------------------------")
     while battery_life >= 0:
-
+        print()
         next_location = input(str("Please enter your next destination (in ICAO format): ")).upper()
 
         result = (currentLocation(next_location))
@@ -83,11 +83,11 @@ if should_game_continue:
             print("Wind speed           = ", weather_values[1], "m/s")
             print("Weather code         = ", weather_values[2],
                   "This is used to detect the coludy or clear sky, still wokring on it!")
-            print("---------------------------------------------------------------------------------")
+            print("---------------------------------------------------------------------------------------------------")
 
     else:
         print()
 
         print('You ran out of your battery before reaching the distination!!')
         print()
-        print("-----------------------------------Game Over !!----------------------------------------------")
+        print("++++++++++++++++++++++++++++++++++++++ Game Over !! +++++++++++++++++++++++++++++++++++++++++++++++++++")

@@ -3,23 +3,23 @@ quiz_adedeji = {
     'title': "Planting trees",
     'questions': [
         {
-            'question': "x in 3 * x + 5 = 11",
+            'question': "Solve for x in 3 * x + 5 = 11",
             'correct_answer': "2"
         },
         {
-            'question': "y in 20/y = 5",
+            'question': "Solve for y in 20/y = 5",
             'correct_answer': "4"
         },
         {
-            'question': "x in 9 x 9 = x",
+            'question': "Solve for x in 9 x 9 = x",
             'correct_answer': "81"
         },
         {
-            'question': "y in 21/3= y",
+            'question': "Solve for y in 21/3= y",
             'correct_answer': "7"
         },
         {
-            'question': "2 + (9/3) + (12 x 5)",
+            'question': "Solve, 2 + (9/3) + (12 x 5)",
             'correct_answer': "65"
         }
 
@@ -168,7 +168,7 @@ def selectQuiz():
             return quizes[int(user_selected_quiz) - 1]
         else:
             print("❗Invalid Input❗")
-            print(f"You have {max_attempt - (attempt_no + 1)} more attempt to give a valid input!")
+            print(f"You have {max_attempt - (attempt_no + 1)} more attempts to give a valid input!")
             print()
             continue
 
@@ -181,11 +181,11 @@ def playQuiz():
         print("Invalid inputs given for the maximum allowed attempts!")
         return None
     print()
+    print("================================================================================================")
     print(f'Hello, you have selected the option "{quiz["title"]}". Thank you for your interest!')
     print("================================================================================================")
     print("There are 5 questions in total, for each right answer you will be rewarded 250 points.")
     print(quiz['description'])
-    print("================================================================================================")
 
     print()
 
