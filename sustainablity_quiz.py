@@ -54,7 +54,7 @@ quiz_mehedi = {
         }
 
     ],
-    'description': "These are true or false questions. Please provide 't' or 'f' as an answer.",
+    'description': "These are true or false questions. Input 't' or 'f' as an answer (upper or lower case).",
 }
 ##################################################################################################################
 
@@ -84,7 +84,7 @@ quiz_bijay = {
         }
 
     ],
-    'description': "These are multiple choice questions. Please provide alphabet 'a', 'b' or 'c' as an answer.",
+    'description': "These are multiple choice questions. Input 'a', 'b' or 'c' as an answer (upper or lower case).",
 }
 ##################################################################################################################
 
@@ -114,7 +114,7 @@ quiz_wallace = {
         }
 
     ],
-    'description': "These are multiple choice questions. Please provide alphabet 'a', 'b' or 'c' as an answer.",
+    'description': "These are multiple choice questions. Input 'a', 'b' or 'c' as an answer (upper or lower case).",
 }
 
 ##################################################################################################################
@@ -160,13 +160,26 @@ def selectQuiz():
         print(f"    {idx + 1}. {quiz['title']}")
 
     print()
-    user_selected_quiz = int(input("Please select one of the options (1-5) to start the quiz : "))
+    max_attempt = 5
+    for attempt_no in range(0, max_attempt):
+        user_selected_quiz = input("Please select one of the options (1-5) to start the quiz : ")
 
-    return quizes[user_selected_quiz - 1]
+        if user_selected_quiz.isdigit() and int(user_selected_quiz) in range(1, quiz_length + 1):
+            return quizes[int(user_selected_quiz) - 1]
+        else:
+            print("❗Invalid Input❗")
+            print(f"You have {max_attempt - (attempt_no + 1)} more attempt to give a valid input!")
+            print()
+            continue
+
+    return None
 
 
 def playQuiz():
     quiz = selectQuiz()
+    if quiz == None:
+        print("Invalid inputs given for the maximum allowed attempts!")
+        return None
     print()
     print(f'Hello, you have selected the option "{quiz["title"]}". Thank you for your interest!')
     print("================================================================================================")
@@ -182,8 +195,12 @@ def playQuiz():
 
         print(f"Question {idx + 1}. {question['question']}")
         answer = input("Your answer: ").upper()
-        if (question['correct_answer']) == answer:
+        if question['correct_answer'] == answer:
+            print("✅ Correct answer! ")
             user_score += 250
+        else:
+            print(f"❌ Wrong answer! The correct answer is '{question['correct_answer']}'.")
+
         print()
     return user_score
 
