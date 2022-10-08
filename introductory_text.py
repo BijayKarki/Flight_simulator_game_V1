@@ -9,6 +9,7 @@ def gameDescription():
     print()
     print(
         ":::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::")
+    print()
     print("Stage 1: The game asks 'name' and 'starting location' (in ICAO format) of the player.")
     print()
     print(
@@ -25,7 +26,7 @@ def gameDescription():
     print("Stage 3: After earning battery life, the player is ready to fly around the world.")
     print(
         "         The goal of the player is to collect weather passports by flying around the world within battery life.")
-    print("         The weather passport are; 'HOT, COLD, 0 DEG, 10 DEG, 20 DEG, CLEAR, CLOUDS, WINDY'")
+    print("         The weather passport are; 'HOT, COLD, 0 DEG, 10 DEG, 20 DEG, CLEAR, CLOUDS and WINDY")
     print(
         "         The player does not have to pick the passport in advanced and can be collected in any order!")
     print()

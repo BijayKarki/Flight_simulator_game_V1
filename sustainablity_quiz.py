@@ -160,7 +160,7 @@ def selectQuiz():
         print(f"    {idx + 1}. {quiz['title']}")
 
     print()
-    max_attempt = 5
+    max_attempt = 5  # Player is allowed max 5 times to give invalid input before the game ends!
     for attempt_no in range(0, max_attempt):
         user_selected_quiz = input("Please select one of the options (1-5) to start the quiz : ")
 
@@ -168,7 +168,7 @@ def selectQuiz():
             return quizes[int(user_selected_quiz) - 1]
         else:
             print("❗Invalid Input❗")
-            print(f"You have {max_attempt - (attempt_no + 1)} more attempts to give a valid input!")
+            print(f" You have {max_attempt - (attempt_no + 1)} more attempts to give a valid input!")
             print()
             continue
 

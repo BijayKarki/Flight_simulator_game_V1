@@ -2,31 +2,31 @@
 ## Stage 1
 ###############
 
+airports = []
+should_game_continue = True
+
 from introductory_text import gameDescription
 
 gameDescription()
 
 user_name = input("Please enter the player's name: ")
-start_location = input(str('Please enter your starting location (in ICAO format): ')).upper()
+
+from ICAO_checker import inputICAOCode
+
+start_location = inputICAOCode(True)
 print()
 # update this information to the existing database
 
-airports = []
-should_game_continue = True
-
-from new_destination import currentLocation
-
-result = (currentLocation(start_location))
-
-# airports.append(location)
-
-airports.append({
-    "name": result[0],
-    "coord": tuple(result[1:3])
-
-})
-print("++++++++++++++++++++++++++++++++++ The game begins, Good luck !! ++++++++++++++++++++++++++++++++++++++++++++++")
-print()
+if start_location is None:
+    should_game_continue = False
+else:
+    airports.append({
+        "name": start_location[0],
+        "coord": tuple(start_location[1:3])
+    })
+    print(
+        "++++++++++++++++++++++++++++++++++ The game begins, Good luck !! ++++++++++++++++++++++++++++++++++++++++++++++")
+    print()
 
 ###############
 ## Step 2 (allocating CO2 budget to the player)
@@ -34,27 +34,28 @@ print()
 
 # the player will be prompted to play the quiz here which earns him a battery life!
 
-from sustainablity_quiz import playQuiz
-
-battery_life = playQuiz()
-should_game_continue = battery_life is not None
 
 if should_game_continue:
+    from sustainablity_quiz import playQuiz
+
+    battery_life = playQuiz()
+    should_game_continue = battery_life is not None
+
     print("Congratulations! You have earned " + str(battery_life) + " kAmph battery life for the flight.")
     print()
     print("Please do the routine engine checkup, fasten your seatbelt and start flying!!")
     print()
     print("----------------------------------- Have a safe flight !!----------------------------------------------")
-    while battery_life >= 0:
+    while battery_life >= 0 or should_game_continue:
         print()
-        next_location = input(str("Please enter your next destination (in ICAO format): ")).upper()
-
-        result = (currentLocation(next_location))
-        airports.append({
-            "name": result[0],
-            "coord": tuple(result[1:3])
-
-        })
+        next_location = inputICAOCode()
+        if next_location is not None:
+            airports.append({
+                "name": next_location[0],
+                "coord": tuple(next_location[1:3])
+            })
+        else:
+            should_game_continue = False
 
         from geopy import distance
 
@@ -77,7 +78,6 @@ if should_game_continue:
             print()
             print("Your new location is in " + airports[airport_count]['name'] + ".")
             print("Distance travelled   = ", distance_travelled, "km")
-            # print(distance_between_airports) # improvise this part using dictionary format
             print("Remaining co2 budget = ", (round(battery_life, 2)))
             print("Local temperature    = ", weather_values[0], "degree centigrade")
             print("Wind speed           = ", weather_values[1], "m/s")
@@ -88,6 +88,6 @@ if should_game_continue:
     else:
         print()
 
-        print('You ran out of your battery before reaching the distination!!')
+        print("You don't have enough battery life to reach the next destination!!")
         print()
         print("++++++++++++++++++++++++++++++++++++++ Game Over !! +++++++++++++++++++++++++++++++++++++++++++++++++++")
