@@ -35,3 +35,5 @@ def currentLocation(code):
 #     print("The program continues!")
 
 # print("The program ends here!")
+
+# currentLocation('EFHK')

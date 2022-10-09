@@ -29,7 +29,7 @@ else:
     print()
 
 ###############
-## Step 2 (allocating CO2 budget to the player)
+## Step 2 (allocating bettery life to the player)
 ###############
 
 # the player will be prompted to play the quiz here which earns him a battery life!
@@ -76,18 +76,21 @@ if should_game_continue:
 
         if battery_life > 0:
             print()
-            print("Your new location is in " + airports[airport_count]['name'] + ".")
+            print("Your new location    = ", airports[airport_count]['name'])
             print("Distance travelled   = ", distance_travelled, "km")
-            print("Remaining co2 budget = ", (round(battery_life, 2)))
+            print("Remaining battery    = ", (round(battery_life, 2)))
+            print('*' * 5, "Weather info", '*' * 5)
             print("Local temperature    = ", weather_values[0], "degree centigrade")
             print("Wind speed           = ", weather_values[1], "m/s")
             print("Weather code         = ", weather_values[2],
-                  "This is used to detect the coludy or clear sky, still wokring on it!")
+                  "This is used to detect the cloudy or clear sky, still working on it!")
             print("---------------------------------------------------------------------------------------------------")
 
-    else:
-        print()
+        else:
+            print()
 
-        print("You don't have enough battery life to reach the next destination!!")
-        print()
-        print("++++++++++++++++++++++++++++++++++++++ Game Over !! +++++++++++++++++++++++++++++++++++++++++++++++++++")
+            print("You don't have enough battery life to reach the next destination!!")
+            print()
+            print(
+                "++++++++++++++++++++++++++++++++++++++ Game Over !! +++++++++++++++++++++++++++++++++++++++++++++++++++")
+            should_game_continue = False
