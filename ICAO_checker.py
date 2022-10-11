@@ -21,7 +21,7 @@ from new_destination import currentLocation
 def inputICAOCode(isStartingAirport=False):
     max_attempt = 5  # No. of chances provided to the player for a valid input
     prompt_message = 'Please enter the ICAO of your '
-    prompt_message += 'starting airport : ' if isStartingAirport else 'next destination airport :'
+    prompt_message += 'starting airport: ' if isStartingAirport else 'next destination airport: '
     for attempt_no in range(0, max_attempt):
         print()
         try:

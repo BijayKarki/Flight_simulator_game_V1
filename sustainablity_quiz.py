@@ -35,7 +35,7 @@ quiz_mehdi = {
     'title': "Reduce, Reuse & Recycle",
     'questions': [
         {
-            'question': "Reducing,Reusing and Recycling, make the earth cleaner.",
+            'question': "Reducing, Reusing and Recycling, make the earth cleaner.",
             'correct_answer': "T"
         },
         {
@@ -95,11 +95,11 @@ quiz_wallace = {
     'title': "Sorting waste",
     'questions': [
         {
-            'question': "Which of this is not type of waste?   a) Organic      b) Hazardous        c) Kitchen water",
-            'correct_answer': "C"
+            'question': "Which of these wastes has higher impact on the nature?   a) Organic      b) Hazardous        c) Kitchen water",
+            'correct_answer': "B"
         },
         {
-            'question': "Which of this is not a bio waste?       a)food      b)plastic      b)wood",
+            'question': "Which of this is not a bio waste?       a)food      b)plastic      c)wood",
             'correct_answer': "B"
         },
         {
@@ -180,6 +180,10 @@ def selectQuiz():
     return None
 
 
+test_score = 250
+acutal_score = test_score * 10
+
+
 def playQuiz():
     quiz = selectQuiz()
     if quiz == None:
@@ -190,6 +194,7 @@ def playQuiz():
     print(f'Hello, you have selected the option "{quiz["title"]}". Thank you for your interest!')
     print("================================================================================================")
     print("There are 5 questions in total, for each right answer you will be rewarded 250 points.")
+    print()
     print(quiz['description'])
 
     print()
@@ -202,7 +207,7 @@ def playQuiz():
         answer = input("Your answer: ").upper()
         if question['correct_answer'] == answer:
             print("✅ Correct answer! ")
-            user_score += 250
+            user_score += acutal_score
         else:
             print(f"❌ Wrong answer! The correct answer is '{question['correct_answer']}'.")
 
