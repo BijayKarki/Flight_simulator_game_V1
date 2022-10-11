@@ -1,3 +1,5 @@
+from time import sleep
+
 quiz_adedeji = {
     'author': "Adedeji",
     'title': "Planting trees",
@@ -15,7 +17,7 @@ quiz_adedeji = {
             'correct_answer': "81"
         },
         {
-            'question': "Solve for y in 21/3= y",
+            'question': "Solve for y in 21/3 = y",
             'correct_answer': "7"
         },
         {
@@ -28,8 +30,8 @@ quiz_adedeji = {
 }
 ##################################################################################################################
 
-quiz_mehedi = {
-    'author': "Mehedi",
+quiz_mehdi = {
+    'author': "Mehdi",
     'title': "Reduce, Reuse & Recycle",
     'questions': [
         {
@@ -93,19 +95,19 @@ quiz_wallace = {
     'title': "Sorting waste",
     'questions': [
         {
-            'question': "Which of this is not type of waste?   a) Organic      b) Hazardous        c) Kitchen water.",
+            'question': "Which of this is not type of waste?   a) Organic      b) Hazardous        c) Kitchen water",
             'correct_answer': "C"
         },
         {
-            'question': "Which of this is not type of organic waste?       a)food      b)meat      b)wood",
-            'correct_answer': "A"
+            'question': "Which of this is not a bio waste?       a)food      b)plastic      b)wood",
+            'correct_answer': "B"
         },
         {
-            'question': "Should you clean non-organic from your organic waste to save the environment? a) Not sure b) No c) Yes",
+            'question': "Sorting organic waste from other waste types saves the environment? a) Not sure b) No c) Yes",
             'correct_answer': "C"
         },
         {
-            'question': "The hardest waste to sort or recycle is?  a)Milk carton   b)plastic bottle    c)glass",
+            'question': "The hardest waste to sort or recycle is?  a)Electronics   b)plastic bottle    c)glass",
             'correct_answer': "A"
         },
         {
@@ -148,20 +150,23 @@ quiz_zaheen = {
     'description': "",
 }
 
-quizes = [quiz_adedeji, quiz_mehedi, quiz_bijay, quiz_wallace, quiz_zaheen]
+quizes = [quiz_adedeji, quiz_mehdi, quiz_bijay, quiz_wallace, quiz_zaheen]
 
 
 def selectQuiz():
     quiz_length = len(quizes)
+    sleep(1.0)
     print("===========================================================")
     print(f"There are {quiz_length} different categories of the quiz: ")
     print("===========================================================")
     for idx, quiz in enumerate(quizes):
+        sleep(1.0)
         print(f"    {idx + 1}. {quiz['title']}")
 
     print()
     max_attempt = 5  # Player is allowed max 5 times to give invalid input before the game ends!
     for attempt_no in range(0, max_attempt):
+        sleep(2.0)
         user_selected_quiz = input("Please select one of the options (1-5) to start the quiz : ")
 
         if user_selected_quiz.isdigit() and int(user_selected_quiz) in range(1, quiz_length + 1):
@@ -205,7 +210,7 @@ def playQuiz():
     return user_score
 
 # For future !!
-# quizes = [quiz_adedeji, quiz_mehedi, quiz_bijay, quiz_wallace, quiz_zaheen] #for randomizing the quiz
+# quizes = [quiz_adedeji, quiz_mehdi, quiz_bijay, quiz_wallace, quiz_zaheen] #for randomizing the quiz
 # If we want to randomize the quiz later in the future
 # import random
 # random_index = random.randint(0, len(quizes) - 1)
