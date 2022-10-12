@@ -2,9 +2,13 @@
 ## Stage 1
 ###############
 
+from goal_service import get_all_goals
+
+all_goals = get_all_goals()
+# https://www.geeksforgeeks.org/python-convert-a-list-to-dictionary/
+goal_targets = {all_goals[i][0]: all_goals[i][1] for i in range(0, len(all_goals))}
 
 airports = []
-goal_targets = {0: 'HOT', 1: 'COLD', 2: '0DEG', 3: '10DEG', 4: '20DEG', 5: 'CLEAR', 6: 'CLOUDY', 7: 'WINDY'}
 goals_achieved = set()
 should_game_continue = True
 total_battery_consumed = 0  # initially battery is not consumed at all
@@ -43,11 +47,13 @@ stageTwo()
 if should_game_continue:
     from sustainablity_quiz import playQuiz
 
-    battery_life = playQuiz()
+    # battery_life = playQuiz()
+    battery_life = 12500
     should_game_continue = battery_life is not None
 
     from game_service import create_game, update_game_by_id
 
+    print('game service loaded')
     game_id = create_game(user_name, battery_life, start_location[3])
     print("Congratulations! You have earned " + str(battery_life) + " Ah battery life for the flight.")
     print()
@@ -95,37 +101,49 @@ if should_game_continue:
         elif battery_life > 0:
             update_game_by_id(game_id, total_battery_consumed, next_location[3])
 
-            from Weather_API import getWeatherDataByLatLon
+            from weather_service import getWeatherDataByLatLon
 
             weather_values = getWeatherDataByLatLon(current_coord[0], current_coord[1])
-
+            print(weather_values)
             # print(f"Goal targets set:{goal_targets}.")
+
+            temperature_goal_id = None
+            weather_goal_id = None
+            wind_speed_goal_id = None
+            # goal_targets = {0: 'HOT', 1: 'COLD', 2: '0DEG', 3: '10DEG', 4: '20DEG', 5: 'CLEAR', 6: 'CLOUDY', 7: 'WINDY'}
 
             # conditions for temperature values
             if weather_values[0] > 25:
-                temperature_goal_acheived = goal_targets[0]
+                temperature_goal_id = 1  # HOT
             elif weather_values[0] < -20:
-                temperature_goal_acheived = goal_targets[1]
+                temperature_goal_id = 2  # COLD
             elif weather_values[0] == 0:
-                temperature_goal_acheived = goal_targets[2]
+                temperature_goal_id = 3  # 0DEG
             elif weather_values[0] == 10:
-                temperature_goal_acheived = goal_targets[3]
+                temperature_goal_id = 4  # 10DEG
             elif weather_values[0] == 20:
-                temperature_goal_acheived = goal_targets[4]
+                temperature_goal_id = 5  # 20DEG
 
-            goals_achieved.add(temperature_goal_acheived)
+            if temperature_goal_id is not None:
+                goal_reached = goal_targets[temperature_goal_id]
+                goals_achieved.add(goal_reached)
+                # update goal_reached table with game_id and temperature_goal_id
 
             # condition for clear or cloudy sky
             if weather_values[2] == 0:
-                weather_goal_achieved = goal_targets[5]
+                weather_goal_id = 6  # CLEAR
             else:
-                weather_goal_achieved = goal_targets[6]
+                weather_goal_id = 7  # CLOUDS
 
-            goals_achieved.add(weather_goal_achieved)
+            if weather_goal_id is not None:
+                goals_achieved.add(goal_targets[weather_goal_id])
+                # update goal_reached table with game_id and temperature_goal_id
 
             # condition for wind speed
             if weather_values[1] > 10:
-                goals_achieved.add(goal_targets[7])
+                wind_speed_goal_id = 8
+                goals_achieved.add(goal_targets[wind_speed_goal_id])  # WINDY
+                # update goal_reached table with game_id and temperature_goal_id
 
             print()
             print("Your new location    = ", airports[airport_count]['name'])

@@ -1,13 +1,17 @@
 from database_connection import connection
 
 
-def get_game_by_id(id):
-    sql_read = f"SELECT * FROM game WHERE id = '{id}'"
+def get_all_goals():
+    sql_read = f"SELECT id,name FROM goal"
 
     cursor = connection.cursor()
     cursor.execute(sql_read)
-    result = cursor.fetchone()
+    result = cursor.fetchall()
+    # print(result)
     return result
+
+
+get_all_goals()
 
 
 def create_game(screen_name, co2_budget, location):

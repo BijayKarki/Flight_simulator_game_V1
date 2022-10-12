@@ -1,7 +1,7 @@
 # This file contains a function which performs a query in the database
 # the function takes in ICAO code and return name, latitude, longitude and ICAO of the airport.
 
-from Database_Connection import connection
+from database_connection import connection
 
 
 def currentLocation(code):

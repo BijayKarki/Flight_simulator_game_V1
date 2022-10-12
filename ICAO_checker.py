@@ -1,19 +1,4 @@
 # This file contains a function which performs a query in the database
-# the function takes in ICAO code, perfroms sql query and return true if the value exists otherwise false.
-
-from Database_Connection import connection
-
-
-def icaoExistsInDb(code):
-    sql = "SELECT name FROM airport"
-    sql += " WHERE ident ='" + code + "'"
-
-    cursor = connection.cursor()
-    cursor.execute(sql)
-    result = cursor.fetchall()
-    # print(bool(result))
-    return bool(result)
-
 
 from new_destination import currentLocation
 
