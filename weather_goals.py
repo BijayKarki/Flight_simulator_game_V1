@@ -1,3 +1,5 @@
+# This files checks if the local weather complies with the weather targets
+
 from weather_service import getWeatherDataByLatLon
 
 # Helsinki Vantaa Airport (60.3172, 24.963301)

@@ -1,4 +1,8 @@
+# This file contains sustainablity quizes and the functions to choose the quiz based on user's input
+
 from time import sleep
+
+sleep_time = 1  # time to pause between consecutive prints
 
 quiz_adedeji = {
     'author': "Adedeji",
@@ -155,18 +159,18 @@ quizes = [quiz_adedeji, quiz_mehdi, quiz_bijay, quiz_wallace, quiz_zaheen]
 
 def selectQuiz():
     quiz_length = len(quizes)
-    sleep(1.0)
+    sleep(sleep_time)
     print("===========================================================")
     print(f"There are {quiz_length} different categories of the quiz: ")
     print("===========================================================")
     for idx, quiz in enumerate(quizes):
-        sleep(1.0)
+        sleep(sleep_time)
         print(f"    {idx + 1}. {quiz['title']}")
 
     print()
     max_attempt = 5  # Player is allowed max 5 times to give invalid input before the game ends!
     for attempt_no in range(0, max_attempt):
-        sleep(2.0)
+        sleep(1.0)
         user_selected_quiz = input("Please select one of the options (1-5) to start the quiz : ")
 
         if user_selected_quiz.isdigit() and int(user_selected_quiz) in range(1, quiz_length + 1):
@@ -180,10 +184,6 @@ def selectQuiz():
     return None
 
 
-test_score = 250
-acutal_score = test_score * 10
-
-
 def playQuiz():
     quiz = selectQuiz()
     if quiz == None:
@@ -193,21 +193,22 @@ def playQuiz():
     print("================================================================================================")
     print(f'Hello, you have selected the option "{quiz["title"]}". Thank you for your interest!')
     print("================================================================================================")
-    print("There are 5 questions in total, for each right answer you will be rewarded 250 points.")
+    print("There are 5 questions in total, for each right answer you will be rewarded 2500 points.")
     print()
     print(quiz['description'])
 
     print()
 
     user_score = 0
+    correct_score = 2500
     selected_quiz_questions = quiz['questions']
     for idx, question in enumerate(selected_quiz_questions):
-
+        sleep(sleep_time)
         print(f"Question {idx + 1}. {question['question']}")
         answer = input("Your answer: ").upper()
         if question['correct_answer'] == answer:
             print("✅ Correct answer! ")
-            user_score += acutal_score
+            user_score += correct_score
         else:
             print(f"❌ Wrong answer! The correct answer is '{question['correct_answer']}'.")
 

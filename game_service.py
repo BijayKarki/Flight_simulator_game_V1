@@ -1,3 +1,6 @@
+# This is the file that updates the user information to the database i.e. game table
+
+
 from database_connection import connection
 
 

@@ -1,8 +1,9 @@
+# This is a file containing texts which are printed during the game execution.
 spaces = 9
 column_count = 113
 from time import sleep
 
-sleep_time = 0
+sleep_time = 1
 
 
 def stageOne():

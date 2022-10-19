@@ -1,3 +1,0 @@
-
-
-from geopy import distance

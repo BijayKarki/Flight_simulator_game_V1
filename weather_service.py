@@ -1,3 +1,5 @@
+# This file establishes a connection with weather API to fetch the weather information
+
 import requests  # this package needs to be installed locally
 import json
 
@@ -19,8 +21,6 @@ def getWeatherDataByLatLon(lat, lon):
     weather_code = parse_json['current_weather']['weathercode']
     return (temp, wind_speed, weather_code)
 
-    # print()
-    # print(parse_json['current_weather'])
-    # print("The temperature of the current loctaion is " + str(temp) + " degree centigrade.")
-    # print("The windspeed is " + str(wind_speed) + " m/s.")
-    # print()
+
+""" Only temp, wind speed and cloudiness were seleceted parameters
+from the weather API as required by the game"""

@@ -1,5 +1,5 @@
 # This file contains a function which performs a query in the database
-# the function takes in ICAO code and return name, latitude, longitude and ICAO of the airport.
+# The function takes in ICAO code and return name, latitude, longitude and ICAO of the airport.
 
 from database_connection import connection
 
@@ -20,20 +20,3 @@ def currentLocation(code):
         raise ValueError(f" Sorry!, no entry found in the database for the given ICAO code, i.e. {code}.")
 
     return result
-
-# currentLocation('')
-
-
-# try:
-#     currentLocation('')
-# except ValueError as e:
-#     print("Handling value error exception with wrong code!")
-#     # print(e)
-# except Exception as e:
-#     print(e)
-# finally:
-#     print("The program continues!")
-
-# print("The program ends here!")
-
-# currentLocation('EFHK')
