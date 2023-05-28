@@ -1,10 +1,23 @@
 # Flight Simulator Game
 
-Libraries required: geopy, requests and mysql.connector
+Libraries used for the development: geopy, requests and mysql.connector
 
 ## Designed by group 4
 
 ## Description of the game
+
+This is a pure character based game which runs on a Python terminal, originally developed for a school project.
+
+The game utilizes a database which consists of information of airports around the world.
+A player provides ICAO (one of the unique identifiers) of Airports to travel from one location to another while plying
+the game.
+The idea of the game is to travel from one location to another while collecting various weather targets.
+A free weather API (https://open-meteo.com) was used to get the real-time weather conditions of the location where the
+player is currently in.
+The player wins the game if a set of weather targets are met while flying through various locations.
+
+A mini-game inside the main game is implemented to make players aware on various topics of sustainability.
+This allows the player to collect points which corresponds to the fuel for their flight.
 
 ## Game ouptput
 
